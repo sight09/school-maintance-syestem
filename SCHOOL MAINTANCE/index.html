@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Plain HTML/CSS/JavaScript — No TypeScript, No Frameworks -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Maintenance Request</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>School Maintenance System</h1>
+            <p class="subtitle">Submit a new repair or maintenance request</p>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="active">Submit Request</a>
+                <a href="view-requests.html">My Requests</a>
+                <a href="admin-dashboard.html">Admin Dashboard</a>
+            </nav>
+        </header>
+
+        <main class="card" style="max-width: 600px; margin: 0 auto;">
+            <form id="requestForm">
+                
+                <div class="form-group">
+                    <label for="issueName">Issue Name <span style="color:red">*</span></label>
+                    <input type="text" id="issueName" name="issueName" placeholder="e.g. Broken Projector in Room 301" required>
+                    <div class="error-msg">Please provide a name for the issue.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location <span style="color:red">*</span></label>
+                    <input type="text" id="location" name="location" placeholder="e.g. Science Lab, 2nd Floor Hallway" required>
+                    <div class="error-msg">Location is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description <span style="color:red">*</span></label>
+                    <textarea id="description" name="description" placeholder="Describe the problem in detail..." required></textarea>
+                    <div class="error-msg">Please provide a description.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reporterName">Your Name <span style="color:red">*</span></label>
+                    <input type="text" id="reporterName" name="reporterName" placeholder="e.g. John Doe" required>
+                    <div class="error-msg">Your name is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">Upload Photo (Optional)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="photo" name="photo" accept="image/jpeg, image/png">
+                        <small style="display:block; color:var(--text-muted); margin-top:0.25rem;">Accepted formats: JPG, PNG</small>
+                    </div>
+                    <!-- Image Preview Container -->
+                    <img id="preview" class="image-preview" alt="Preview">
+                </div>
+
+                <div style="text-align: right; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </div>
+
+            </form>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

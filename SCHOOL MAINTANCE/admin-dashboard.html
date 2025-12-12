@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Plain HTML/CSS/JavaScript — No TypeScript, No Frameworks -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Admin Dashboard</h1>
+      <p class="subtitle">Manage and update maintenance requests</p>
+
+      <nav class="nav-links">
+        <a href="index.html">Submit Request</a>
+        <a href="view-requests.html">My Requests</a>
+        <a href="admin-dashboard.html" class="active">Admin Dashboard</a>
+      </nav>
+    </header>
+
+    <main class="card">
+      <!-- Controls -->
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search requests...">
+        <select id="statusFilter" style="max-width: 200px;">
+          <option value="All">All Statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container" id="adminTable">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 15%;">Issue Name</th>
+              <th style="width: 15%;">Location</th>
+              <th style="width: 20%;">Description</th>
+              <th style="width: 10%;">Reporter</th>
+              <th style="width: 10%;">Status</th>
+              <th style="width: 10%;">Date</th>
+              <th style="width: 10%;">Photo</th>
+              <th style="width: 10%;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Rows rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
