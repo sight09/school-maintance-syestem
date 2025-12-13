@@ -13,9 +13,16 @@ header('Access-Control-Allow-Headers: Content-Type');
 // Include database configuration
 require_once '../config/db.php';
 
+session_start();
+
 // Only accept POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     send_json_response(false, 'Invalid request method. Only POST is allowed.');
+}
+
+// Check admin authentication
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    send_json_response(false, 'Unauthorized. Admin access required.');
 }
 
 // Check if request is JSON or form data

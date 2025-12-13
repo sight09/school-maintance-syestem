@@ -14,17 +14,33 @@ header('Content-Type: application/json');
 // Include database configuration
 require_once '../config/db.php';
 
+session_start();
+
 // Only accept GET requests
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send_json_response(false, 'Invalid request method. Only GET is allowed.');
 }
 
+// Check authentication
+if (!isset($_SESSION['user_id'])) {
+    send_json_response(false, 'Unauthorized. Please login.');
+}
+
 // Build SQL query
-$sql = "SELECT id, issue_name, description, location, reporter_name, photo, status, date_submitted 
-        FROM requests WHERE 1=1";
+$sql = "SELECT r.id, r.issue_name, r.description, r.location, r.reporter_name, r.photo, r.status, r.date_submitted 
+        FROM requests r";
 
 $params = [];
 $types = '';
+
+// If not admin, only show own requests
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    $sql .= " JOIN request_owners ro ON r.id = ro.request_id WHERE ro.user_id = ?";
+    $params[] = $_SESSION['user_id'];
+    $types .= 'i';
+} else {
+    $sql .= " WHERE 1=1";
+}
 
 // Filter by status if provided
 if (isset($_GET['status']) && !empty($_GET['status'])) {
