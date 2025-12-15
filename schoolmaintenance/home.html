@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - School Maintenance System</title>
+    <link rel="stylesheet" href="css/styles.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Specific Styles for Home Landing Page */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border-top: 5px solid var(--secondary-color);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 999px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1 style="justify-content: center;">School Maintenance System</h1>
+            <p class="subtitle">Streamlined Repair & Issue Reporting for Campus Facilities</p>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-title">Keep Our Campus Running Smoothly</div>
+            <p class="hero-text">
+                The centralized platform for students, staff, and administrators to report, track, and resolve
+                maintenance issues across dorms, labs, and classrooms.
+            </p>
+
+            <div class="cta-group" id="authActions">
+                <!-- Buttons injected by JS based on Auth Status -->
+                <a href="login.html" class="btn btn-primary">Login to Report</a>
+                <a href="register.html" class="btn btn-view-small"
+                    style="background: white; border: 1px solid var(--border-color);">New User? Register</a>
+            </div>
+        </div>
+
+        <!-- Who & Why Section -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🔍</span>
+                <h3 class="feature-title">What to Report?</h3>
+                <p>Broken lockers, electrical failures, plumbing/water issues, damaged furniture, or lab equipment.</p>
+            </div>
+            <div class="feature-card" style="border-top-color: var(--primary-color);">
+                <span class="feature-icon">👥</span>
+                <h3 class="feature-title">Who is it for?</h3>
+                <p><strong>Students & Staff:</strong> Quickly submit requests and track
+                    progress.<br><strong>Admins:</strong> Manage workflow and assign repairs.</p>
+            </div>
+            <div class="feature-card" style="border-top-color: var(--accent-color);">
+                <span class="feature-icon">🚀</span>
+                <h3 class="feature-title">Why use it?</h3>
+                <p>Eliminate paper forms, get real-time status updates (Pending, In Progress, Completed), and ensure
+                    faster resolutions.</p>
+            </div>
+        </div>
+
+        <!-- How it Works -->
+        <section style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-family: var(--font-heading); color: var(--text-primary); margin-bottom: 2rem;">How It Works
+            </h2>
+            <ul class="step-list">
+                <li class="step-item">
+                    <span class="step-number">1</span>
+                    <span><strong>Login or Register</strong> to access the system.</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-number">2</span>
+                    <span><strong>Submit a Request</strong> with a photo and description.</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-number">3</span>
+                    <span><strong>Track Status</strong> as Admins review and fix the issue.</span>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        // Check Authentication and Update UI
+        fetch('auth/check_auth.php')
+            .then(response => response.json())
+            .then(data => {
+                const ctaGroup = document.getElementById('authActions');
+
+                if (data.authenticated) {
+                    // User is logged in
+                    if (data.role === 'admin') {
+                        // Admin Actions
+                        ctaGroup.innerHTML = `
+                            <a href="admin-dashboard.html" class="btn btn-primary">Go to Admin Dashboard ⚙️</a>
+                            <a href="view-requests.html" class="btn btn-view-small">View All Requests</a>
+                        `;
+                    } else {
+                        // Regular User Actions
+                        ctaGroup.innerHTML = `
+                            <a href="index.html" class="btn btn-primary">Submit a New Request 📝</a>
+                            <a href="view-requests.html" class="btn btn-view-small">My Requests</a>
+                        `;
+                    }
+                } else {
+                    // Not logged in (Default styling remains, but ensuring listeners work if needed)
+                    // Already set in HTML, but can ensure dynamic correctness here
+                    ctaGroup.innerHTML = `
+                        <a href="login.html" class="btn btn-primary">Get Started / Login</a>
+                        <a href="register.html" class="btn btn-view-small" style="background: white; border: 1px solid #ccc;">Create Account</a>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Auth Check Error:', error);
+            });
+    </script>
+</body>
+
+</html>

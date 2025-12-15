@@ -1,9 +1,23 @@
 // Backend API URL
 const API_BASE_URL = 'http://localhost/schoolmaintenance/backend';
 
+let allRequests = []; // Store all requests locally
+
 // Load requests when page loads
 document.addEventListener('DOMContentLoaded', () => {
   loadAdminRequests();
+
+  // Add event listener for status filter
+  const statusFilter = document.getElementById('statusFilter');
+  if (statusFilter) {
+    statusFilter.addEventListener('change', filterRequests);
+  }
+
+  // Add event listener for search
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', filterRequests);
+  }
 });
 
 // Load all requests for admin dashboard
@@ -13,8 +27,9 @@ async function loadAdminRequests() {
     const data = await response.json();
 
     if (data.success) {
-      displayAdminRequests(data.data.requests);
-      updateStats(data.data.requests);
+      allRequests = data.data.requests; // Store in global variable
+      filterRequests(); // Display filtered results (default is All)
+      updateStats(allRequests);
     } else {
       showError('Failed to load requests: ' + data.message);
     }
@@ -22,6 +37,34 @@ async function loadAdminRequests() {
     console.error('Error loading requests:', error);
     showError('Network error: Could not connect to backend. Make sure XAMPP is running!');
   }
+}
+
+// Filter requests based on dropdown selection and search input
+function filterRequests() {
+  const statusFilter = document.getElementById('statusFilter');
+  const searchInput = document.getElementById('searchInput');
+
+  const selectedStatus = statusFilter ? statusFilter.value : 'All';
+  const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+  let filteredRequests = allRequests;
+
+  // Filter by status
+  if (selectedStatus !== 'All') {
+    filteredRequests = filteredRequests.filter(req => req.status === selectedStatus);
+  }
+
+  // Filter by search term
+  if (searchTerm) {
+    filteredRequests = filteredRequests.filter(req =>
+      (req.issue_name && req.issue_name.toLowerCase().includes(searchTerm)) ||
+      (req.location && req.location.toLowerCase().includes(searchTerm)) ||
+      (req.reporter_name && req.reporter_name.toLowerCase().includes(searchTerm)) ||
+      (req.id && req.id.toString().includes(searchTerm))
+    );
+  }
+
+  displayAdminRequests(filteredRequests);
 }
 
 // Display requests in admin table
@@ -175,56 +218,7 @@ function createAdminModal() {
     const style = document.createElement('style');
     style.id = 'modalStyles';
     style.textContent = `
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-      }
-      .modal-content {
-        background-color: white;
-        margin: 5% auto;
-        padding: 2rem;
-        border-radius: 12px;
-        max-width: 600px;
-        max-height: 80vh;
-        overflow-y: auto;
-      }
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .close:hover {
-        color: #000;
-      }
-      .modal-body {
-        margin-top: 1rem;
-      }
-      .status-select {
-        padding: 0.5rem;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-        font-size: 14px;
-      }
-      .btn-view-small {
-        padding: 0.4rem 0.8rem;
-        background: #667eea;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-      .btn-view-small:hover {
-        background: #5568d3;
-      }
+      /* Styles handled in css/styles.css for better maintainability and theme consistency */
     `;
     document.head.appendChild(style);
   }
