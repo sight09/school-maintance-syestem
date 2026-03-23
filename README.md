@@ -1,4 +1,4 @@
-Project Overview
+# Project Overview
 
 This is a full-stack web application built for practical learning and real-world understanding of how frontend and backend systems work together. The project uses a simple but effective technology stack, focusing on clarity, structure, and best practices rather than heavy frameworks.
 
@@ -6,7 +6,7 @@ The application includes a complete authentication and authorization system, rol
 
 ---
 
-Features
+## Features
 
 * User registration and login
 * Secure password handling on the server
